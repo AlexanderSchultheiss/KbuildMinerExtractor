@@ -1,0 +1,4 @@
+file1.c: (ALPHA == "y") || (ALPHA == "m")
+file2.c: [TRUE]
+dir/file1.c: ((BETA == "y") || (BETA == "m"))
+dir/file2.c: ((BETA == "y") || (BETA == "m")) && ((ALPHA == "y") || (ALPHA == "m"))

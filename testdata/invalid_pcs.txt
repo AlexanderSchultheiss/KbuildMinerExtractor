@@ -1,0 +1,4 @@
+file1.c: (InvalidExpression() && (((ALPHA == "y") || (ALPHA == "m")) && (((((BETA == "y") || (BETA == "m")) || ((GAMMA == "y") || (GAMMA == "m"))) || ((DELTA == "y") || (DELTA == "m"))) || ((EPSILON == "y") || (EPSILON == "m")))))
+file2.c: (InvalidExpression() && (((ALPHA == "y") || (ALPHA == "m")) && (((((BETA == "y") || (BETA == "m")) || ((GAMMA == "y") || (GAMMA == "m"))) || ((DELTA == "y") || (DELTA == "m"))) || ((EPSILON == "y") || (EPSILON == "m")))))
+file3.c: [TRUE]
+file4.c: this is not a valid formula.
