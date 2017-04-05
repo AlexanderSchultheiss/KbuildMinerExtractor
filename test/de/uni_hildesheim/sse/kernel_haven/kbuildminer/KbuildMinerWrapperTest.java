@@ -48,7 +48,9 @@ public class KbuildMinerWrapperTest {
     @AfterClass
     public static void afterClass() {
         for (File file : RESOURCE_DIR.listFiles()) {
-            file.delete();
+            if (!file.getName().equals(".gitignore")) {
+                file.delete();
+            }
         }
     }
     
