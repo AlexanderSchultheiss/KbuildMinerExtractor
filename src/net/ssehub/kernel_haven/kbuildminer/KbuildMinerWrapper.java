@@ -1,10 +1,10 @@
-package de.uni_hildesheim.sse.kernel_haven.kbuildminer;
+package net.ssehub.kernel_haven.kbuildminer;
 
 import java.io.File;
 import java.io.IOException;
 
-import de.uni_hildesheim.sse.kernel_haven.util.Logger;
-import de.uni_hildesheim.sse.kernel_haven.util.Util;
+import net.ssehub.kernel_haven.util.Logger;
+import net.ssehub.kernel_haven.util.Util;
 
 /**
  * This class is a Wrapper for calling the tool KbuildMiner and receiving the
@@ -51,7 +51,7 @@ public class KbuildMinerWrapper {
         // extract jar to run kconfigreader
         File kbuildMinerJar = new File(resourceDir, "kbuildminer.jar");
         if (!kbuildMinerJar.isFile()) {
-            Util.extractJarResourceToFile("de/uni_hildesheim/sse/kernel_haven/kbuildminer/res/kbuildminer.jar",
+            Util.extractJarResourceToFile("net/ssehub/kernel_haven/kbuildminer/res/kbuildminer.jar",
                     kbuildMinerJar);
         }
 

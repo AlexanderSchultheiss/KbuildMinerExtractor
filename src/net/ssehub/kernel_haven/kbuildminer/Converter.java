@@ -1,23 +1,23 @@
-package de.uni_hildesheim.sse.kernel_haven.kbuildminer;
+package net.ssehub.kernel_haven.kbuildminer;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-import de.uni_hildesheim.sse.kernel_haven.build_model.BuildModel;
-import de.uni_hildesheim.sse.kernel_haven.util.Logger;
-import de.uni_hildesheim.sse.kernel_haven.util.logic.Conjunction;
-import de.uni_hildesheim.sse.kernel_haven.util.logic.Disjunction;
-import de.uni_hildesheim.sse.kernel_haven.util.logic.False;
-import de.uni_hildesheim.sse.kernel_haven.util.logic.Formula;
-import de.uni_hildesheim.sse.kernel_haven.util.logic.Negation;
-import de.uni_hildesheim.sse.kernel_haven.util.logic.Variable;
-import de.uni_hildesheim.sse.kernel_haven.util.logic.parser.ExpressionFormatException;
-import de.uni_hildesheim.sse.kernel_haven.util.logic.parser.Parser;
-import de.uni_hildesheim.sse.kernel_haven.util.logic.parser.VariableCache;
-import de.uni_hildesheim.sse.kernel_haven.variability_model.VariabilityModel;
-import de.uni_hildesheim.sse.kernel_haven.variability_model.VariabilityVariable;
+import net.ssehub.kernel_haven.build_model.BuildModel;
+import net.ssehub.kernel_haven.util.Logger;
+import net.ssehub.kernel_haven.util.logic.Conjunction;
+import net.ssehub.kernel_haven.util.logic.Disjunction;
+import net.ssehub.kernel_haven.util.logic.False;
+import net.ssehub.kernel_haven.util.logic.Formula;
+import net.ssehub.kernel_haven.util.logic.Negation;
+import net.ssehub.kernel_haven.util.logic.Variable;
+import net.ssehub.kernel_haven.util.logic.parser.ExpressionFormatException;
+import net.ssehub.kernel_haven.util.logic.parser.Parser;
+import net.ssehub.kernel_haven.util.logic.parser.VariableCache;
+import net.ssehub.kernel_haven.variability_model.VariabilityModel;
+import net.ssehub.kernel_haven.variability_model.VariabilityVariable;
 
 /**
  * Converts the output of KbuildMiner to {@link BuildModel}.

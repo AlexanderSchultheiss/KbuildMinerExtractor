@@ -1,4 +1,4 @@
-package de.uni_hildesheim.sse.kernel_haven.kbuildminer;
+package net.ssehub.kernel_haven.kbuildminer;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -6,15 +6,15 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Assert;
 import org.junit.Test;
 
-import de.uni_hildesheim.sse.kernel_haven.util.logic.Conjunction;
-import de.uni_hildesheim.sse.kernel_haven.util.logic.Disjunction;
-import de.uni_hildesheim.sse.kernel_haven.util.logic.Formula;
-import de.uni_hildesheim.sse.kernel_haven.util.logic.Negation;
-import de.uni_hildesheim.sse.kernel_haven.util.logic.True;
-import de.uni_hildesheim.sse.kernel_haven.util.logic.Variable;
-import de.uni_hildesheim.sse.kernel_haven.util.logic.parser.ExpressionFormatException;
-import de.uni_hildesheim.sse.kernel_haven.util.logic.parser.Parser;
-import de.uni_hildesheim.sse.kernel_haven.util.logic.parser.VariableCache;
+import net.ssehub.kernel_haven.util.logic.Conjunction;
+import net.ssehub.kernel_haven.util.logic.Disjunction;
+import net.ssehub.kernel_haven.util.logic.Formula;
+import net.ssehub.kernel_haven.util.logic.Negation;
+import net.ssehub.kernel_haven.util.logic.True;
+import net.ssehub.kernel_haven.util.logic.Variable;
+import net.ssehub.kernel_haven.util.logic.parser.ExpressionFormatException;
+import net.ssehub.kernel_haven.util.logic.parser.Parser;
+import net.ssehub.kernel_haven.util.logic.parser.VariableCache;
 
 /**
  * Tests the {@link KbuildMinerPcGrammar}.

@@ -1,16 +1,16 @@
-package de.uni_hildesheim.sse.kernel_haven.kbuildminer;
+package net.ssehub.kernel_haven.kbuildminer;
 
 import java.io.File;
 import java.io.IOException;
 
-import de.uni_hildesheim.sse.kernel_haven.PipelineConfigurator;
-import de.uni_hildesheim.sse.kernel_haven.SetUpException;
-import de.uni_hildesheim.sse.kernel_haven.build_model.BuildModel;
-import de.uni_hildesheim.sse.kernel_haven.build_model.BuildModelProvider;
-import de.uni_hildesheim.sse.kernel_haven.build_model.IBuildModelExtractor;
-import de.uni_hildesheim.sse.kernel_haven.config.BuildExtractorConfiguration;
-import de.uni_hildesheim.sse.kernel_haven.util.ExtractorException;
-import de.uni_hildesheim.sse.kernel_haven.util.Logger;
+import net.ssehub.kernel_haven.PipelineConfigurator;
+import net.ssehub.kernel_haven.SetUpException;
+import net.ssehub.kernel_haven.build_model.BuildModel;
+import net.ssehub.kernel_haven.build_model.BuildModelProvider;
+import net.ssehub.kernel_haven.build_model.IBuildModelExtractor;
+import net.ssehub.kernel_haven.config.BuildExtractorConfiguration;
+import net.ssehub.kernel_haven.util.ExtractorException;
+import net.ssehub.kernel_haven.util.Logger;
 
 /**
  * Wrapper to run KbuildMiner.

@@ -1,4 +1,4 @@
-package de.uni_hildesheim.sse.kernel_haven.kbuildminer;
+package net.ssehub.kernel_haven.kbuildminer;
 
 import static org.hamcrest.CoreMatchers.anyOf;
 import static org.hamcrest.CoreMatchers.is;
@@ -18,7 +18,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import de.uni_hildesheim.sse.kernel_haven.util.Logger;
+import net.ssehub.kernel_haven.util.Logger;
 
 /**
  * Tests if the KbuildMinerWrapper runs correctly.

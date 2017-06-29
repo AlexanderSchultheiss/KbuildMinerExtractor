@@ -165,7 +165,7 @@
 			<structure name="KbuildMinerExtractor">
 				<classfiles>
 					<fileset dir="${build.dir}/classes">
-						<include name="de/uni_hildesheim/sse/kernel_haven/**/*.class" />
+						<include name="net/ssehub/kernel_haven/**/*.class" />
 					</fileset>
 				</classfiles>
 				<sourcefiles encoding="UTF-8">
