@@ -5,9 +5,8 @@ import java.io.IOException;
 
 import net.ssehub.kernel_haven.PipelineConfigurator;
 import net.ssehub.kernel_haven.SetUpException;
+import net.ssehub.kernel_haven.build_model.AbstractBuildModelExtractor;
 import net.ssehub.kernel_haven.build_model.BuildModel;
-import net.ssehub.kernel_haven.build_model.BuildModelProvider;
-import net.ssehub.kernel_haven.build_model.IBuildModelExtractor;
 import net.ssehub.kernel_haven.config.BuildExtractorConfiguration;
 import net.ssehub.kernel_haven.util.ExtractorException;
 import net.ssehub.kernel_haven.util.Logger;
@@ -18,10 +17,10 @@ import net.ssehub.kernel_haven.util.Logger;
  * @author Adam
  * @author Johannes
  */
-public class KbuildMinerExtractor implements IBuildModelExtractor, Runnable {
+public class KbuildMinerExtractor extends AbstractBuildModelExtractor {
 
     private static final Logger LOGGER = Logger.get();
-    
+
     /**
      * The path to the linux source tree.
      */
@@ -33,25 +32,12 @@ public class KbuildMinerExtractor implements IBuildModelExtractor, Runnable {
     private String topFolders;
     
     /**
-     * The provider to notify about results.
-     */
-    private BuildModelProvider provider;
-    
-    /**
      * The directory where this extractor can store its resources. Not null.
      */
     private File resourceDir;
-    
-    private boolean stopRequested;
-
-    /**
-     * Creates a new KbuildMiner extractor.
-     * 
-     * @param config The user configuration file.
-     * 
-     * @throws SetUpException If the user configuration is not valid.
-     */
-    public KbuildMinerExtractor(BuildExtractorConfiguration config) throws SetUpException {
+   
+    @Override
+    protected void init(BuildExtractorConfiguration config) throws SetUpException {
         sourceTree = config.getSourceTree();
         if (sourceTree == null) {
             throw new SetUpException("Config does not contain source_tree setting");
@@ -75,59 +61,34 @@ public class KbuildMinerExtractor implements IBuildModelExtractor, Runnable {
     }
 
     @Override
-    public void start() {
-        Thread th = new Thread(this);
-        th.setName("KbuildMinerExtractor");
-        th.start();
-    }
-    
-    @Override
-    public void stop() {
-        synchronized (this) {
-            stopRequested = true;
-        }
-    }
-    
-    /**
-     * Checks if the provider requested that we stop our extraction.
-     * 
-     * @return Whether stop is requested.
-     */
-    private synchronized boolean isStopRequested() {
-        return stopRequested;
-    }
-
-    @Override
-    public void setProvider(BuildModelProvider provider) {
-        this.provider = provider;
-    }
-
-    @Override
-    public void run() {
+    protected BuildModel runOnFile(File target) throws ExtractorException {
         LOGGER.logDebug("Starting extraction");
+        
+        BuildModel result;
         
         try {
             KbuildMinerWrapper wrapper = new KbuildMinerWrapper(resourceDir);
             
             File output = wrapper.runKbuildMiner(sourceTree, topFolders);
             
-            if (output != null && !isStopRequested()) {
-                Converter c = new Converter(PipelineConfigurator.instance().getVmProvider().getResult());
-                BuildModel bm = c.convert(output);
-                
-                if (!isStopRequested()) {
-                    provider.setResult(bm);
-                }
-                
-            } else if (!isStopRequested()) {
-                provider.setException(new ExtractorException("KconfigReader execution not successful"));
+            if (output == null) {
+                throw new ExtractorException("KconfigReader execution not successful");
             }
             
-        } catch (IOException | ExtractorException e) {
-            if (!isStopRequested()) {
-                provider.setException(new ExtractorException(e));
-            }
+            Converter c = new Converter(PipelineConfigurator.instance().getVmProvider().getResult());
+            result = c.convert(output);
+            
+            
+        } catch (IOException e) {
+            throw new ExtractorException(e);
         }
+        
+        return result;
+    }
+
+    @Override
+    protected String getName() {
+        return "KbuildMinerExtractor";
     }
     
 }
