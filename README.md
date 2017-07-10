@@ -9,7 +9,7 @@ This extractor finds conditional compilation settings in the Kbuild files (`Kbui
 
 ## Usage
 
-To use this extractor, set `build.extractor.class` to `net.ssehub.kernel_haven.kbuildminer.KbuildMinerExtractorFactory` in the KernelHaven properties.
+To use this extractor, set `build.extractor.class` to `net.ssehub.kernel_haven.kbuildminer.KbuildMinerExtractor` in the KernelHaven properties.
 
 ### Dependencies
 
