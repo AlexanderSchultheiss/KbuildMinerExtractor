@@ -65,11 +65,11 @@ public class ConverterTest {
         
         Formula f3 = model.getPc(new File("dir/file1.c"));
         assertThat(f3, notNullValue());
-        assertThat(f3.toString(), is("(CONFIG_BETA || CONFIG_BETA_MODULE)"));
+        assertThat(f3.toString(), is("CONFIG_BETA || CONFIG_BETA_MODULE"));
         
         Formula f4 = model.getPc(new File("dir/file2.c"));
         assertThat(f4, notNullValue());
-        assertThat(f4.toString(), is("((CONFIG_BETA || CONFIG_BETA_MODULE) && CONFIG_ALPHA)"));
+        assertThat(f4.toString(), is("(CONFIG_BETA || CONFIG_BETA_MODULE) && CONFIG_ALPHA"));
         
         assertThat(model.getPc(new File("notExisting.c")), nullValue());
     }
