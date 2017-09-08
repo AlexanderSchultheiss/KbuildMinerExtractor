@@ -78,7 +78,7 @@ public class Converter {
                 VariabilityVariable varVariable = varModel.getVariableMap().get(baseName);
                 
                 if (varVariable != null && !varVariable.getType().equals("tristate")) {
-                    result = new False();
+                    result = False.INSTANCE;
                 }
             }
         }
@@ -127,7 +127,7 @@ public class Converter {
             String filename = line.substring(0, line.indexOf(':'));
             
             File sourceFile = new File(filename);
-            result.add(sourceFile, new False());
+            result.add(sourceFile, False.INSTANCE);
             
             String pc = line.substring(filename.length() + 2);
             

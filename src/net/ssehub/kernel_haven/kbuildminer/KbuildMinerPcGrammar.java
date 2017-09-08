@@ -103,7 +103,7 @@ public class KbuildMinerPcGrammar extends CStyleBooleanGrammar {
         
         if (identifier.contains("[") || identifier.contains("]")) {
             if (identifier.equals("[TRUE]")) {
-                result = new True();
+                result = True.INSTANCE;
             } else {
                 throw new ExpressionFormatException("Invalid identifier: " + identifier);
             }
