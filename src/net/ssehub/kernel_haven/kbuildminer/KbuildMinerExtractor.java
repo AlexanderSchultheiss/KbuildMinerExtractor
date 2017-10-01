@@ -72,7 +72,7 @@ public class KbuildMinerExtractor extends AbstractBuildModelExtractor {
             File output = wrapper.runKbuildMiner(sourceTree, topFolders);
             
             if (output == null) {
-                throw new ExtractorException("KconfigReader execution not successful");
+                throw new ExtractorException("KbuildMiner execution not successful");
             }
             
             Converter c = new Converter(PipelineConfigurator.instance().getVmProvider().getResult());
