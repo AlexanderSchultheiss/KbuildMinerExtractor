@@ -7,9 +7,12 @@ import net.ssehub.kernel_haven.PipelineConfigurator;
 import net.ssehub.kernel_haven.SetUpException;
 import net.ssehub.kernel_haven.build_model.AbstractBuildModelExtractor;
 import net.ssehub.kernel_haven.build_model.BuildModel;
-import net.ssehub.kernel_haven.config.BuildExtractorConfiguration;
+import net.ssehub.kernel_haven.config.Configuration;
+import net.ssehub.kernel_haven.config.DefaultSettings;
+import net.ssehub.kernel_haven.config.Setting;
 import net.ssehub.kernel_haven.util.ExtractorException;
 import net.ssehub.kernel_haven.util.Logger;
+import net.ssehub.kernel_haven.util.Util;
 
 /**
  * Wrapper to run KbuildMiner.
@@ -20,6 +23,9 @@ import net.ssehub.kernel_haven.util.Logger;
 public class KbuildMinerExtractor extends AbstractBuildModelExtractor {
 
     private static final Logger LOGGER = Logger.get();
+    
+    private static final Setting<String> TOP_FOLDERS
+            = new Setting<>("build.extractor.top_folders", Setting.Type.STRING, false, null, "TODO"); 
 
     /**
      * The path to the linux source tree.
@@ -37,16 +43,13 @@ public class KbuildMinerExtractor extends AbstractBuildModelExtractor {
     private File resourceDir;
    
     @Override
-    protected void init(BuildExtractorConfiguration config) throws SetUpException {
-        sourceTree = config.getSourceTree();
-        if (sourceTree == null) {
-            throw new SetUpException("Config does not contain source_tree setting");
-        }
+    protected void init(Configuration config) throws SetUpException {
+        sourceTree = config.getValue(DefaultSettings.SOURCE_TREE);
         
-        
-        topFolders = config.getProperty("build.extractor.top_folders");
+        config.registerSetting(TOP_FOLDERS);
+        topFolders = config.getValue(TOP_FOLDERS);
         if (topFolders == null) {
-            String arch = config.getArch();
+            String arch = config.getValue(DefaultSettings.ARCH);
             if (arch == null) {
                 throw new SetUpException("Config does not contain top_folders setting");
             } else {
@@ -57,7 +60,7 @@ public class KbuildMinerExtractor extends AbstractBuildModelExtractor {
             
         }
         
-        resourceDir = config.getExtractorResourceDir(getClass());
+        resourceDir = Util.getExtractorResourceDir(config, getClass());
     }
 
     @Override
