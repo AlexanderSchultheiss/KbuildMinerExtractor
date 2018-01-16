@@ -54,8 +54,6 @@ public class KbuildMinerPcGrammarTest {
     
     /**
      * Tests parsing of malformed variables.
-     * 
-     * @throws ExpressionFormatException unwanted.
      */
     @Test
     public void testMalformedVariable() {
