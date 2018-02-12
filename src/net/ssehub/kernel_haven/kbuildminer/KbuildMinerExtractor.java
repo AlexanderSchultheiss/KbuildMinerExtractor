@@ -80,6 +80,10 @@ public class KbuildMinerExtractor extends AbstractBuildModelExtractor {
                 throw new ExtractorException("KbuildMiner execution not successful");
             }
             
+            if (output.length() == 0) {
+                LOGGER.logWarning("Output of KbuildMiner is an empty file");
+            }
+            
             Converter c = new Converter(PipelineConfigurator.instance().getVmProvider().getResult());
             result = c.convert(output);
             
