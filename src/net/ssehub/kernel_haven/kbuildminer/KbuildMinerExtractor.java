@@ -22,12 +22,12 @@ import net.ssehub.kernel_haven.util.Util;
  */
 public class KbuildMinerExtractor extends AbstractBuildModelExtractor {
 
-    private static final Logger LOGGER = Logger.get();
-
     public static final Setting<String> TOP_FOLDERS
             = new Setting<>("build.extractor.top_folders", Setting.Type.STRING, false, null, "List of top-folders to "
                     + "analyze in the product line. If this is not specfied, it is automatically generated from the "
                     + "arch setting."); 
+
+    private static final Logger LOGGER = Logger.get();
 
     /**
      * The path to the linux source tree.
