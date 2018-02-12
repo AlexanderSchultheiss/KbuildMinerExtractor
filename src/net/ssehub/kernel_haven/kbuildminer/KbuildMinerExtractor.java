@@ -24,7 +24,7 @@ public class KbuildMinerExtractor extends AbstractBuildModelExtractor {
 
     private static final Logger LOGGER = Logger.get();
 
-    private static final Setting<String> TOP_FOLDERS
+    public static final Setting<String> TOP_FOLDERS
             = new Setting<>("build.extractor.top_folders", Setting.Type.STRING, false, null, "List of top-folders to "
                     + "analyze in the product line. If this is not specfied, it is automatically generated from the "
                     + "arch setting."); 

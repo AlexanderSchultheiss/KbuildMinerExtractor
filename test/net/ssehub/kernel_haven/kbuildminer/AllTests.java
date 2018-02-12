@@ -9,9 +9,10 @@ import org.junit.runners.Suite.SuiteClasses;
  */
 @RunWith(Suite.class)
 @SuiteClasses({
-    KbuildMinerWrapperTest.class,
     ConverterTest.class,
+    KbuildMinerExtractorTest.class,
     KbuildMinerPcGrammarTest.class,
+    KbuildMinerWrapperTest.class,
     })
 public class AllTests {
     // runs tests defined in SuiteClasses

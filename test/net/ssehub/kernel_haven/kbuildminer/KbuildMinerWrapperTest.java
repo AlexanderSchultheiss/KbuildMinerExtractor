@@ -19,6 +19,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import net.ssehub.kernel_haven.util.Logger;
+import net.ssehub.kernel_haven.util.Util;
 
 /**
  * Tests if the KbuildMinerWrapper runs correctly.
@@ -38,20 +39,26 @@ public class KbuildMinerWrapperTest {
      * Initializes the logger.
      */
     @BeforeClass
-    public static void beforeClass() {
+    public static void initLogger() {
         Logger.init();
     }
     
     /**
-     * Clears the temporary resource directory.
+     * Creates the temporary resource dir.
+     */
+    @BeforeClass
+    public static void createTmpRes() {
+        RESOURCE_DIR.mkdir();
+    }
+    
+    /**
+     * Deletes the temporary resource directory.
+     * 
+     * @throws IOException If deleting fails.
      */
     @AfterClass
-    public static void afterClass() {
-        for (File file : RESOURCE_DIR.listFiles()) {
-            if (!file.getName().equals(".gitignore")) {
-                file.delete();
-            }
-        }
+    public static void deleteTmpRes() throws IOException {
+        Util.deleteFolder(RESOURCE_DIR);
     }
     
     /**
