@@ -70,6 +70,10 @@ public class KbuildMinerWrapper {
         
         Util.deleteFolder(new File(resourceDir, "output"));
 
+        if (!success && output.isFile()) {
+            output.delete();
+        }
+        
         return success ? output : null;
     }
 

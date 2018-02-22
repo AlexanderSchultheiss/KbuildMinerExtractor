@@ -71,10 +71,11 @@ public class KbuildMinerExtractor extends AbstractBuildModelExtractor {
         
         BuildModel result;
         
+        File output = null;
         try {
             KbuildMinerWrapper wrapper = new KbuildMinerWrapper(resourceDir);
             
-            File output = wrapper.runKbuildMiner(sourceTree, topFolders);
+            output = wrapper.runKbuildMiner(sourceTree, topFolders);
             
             if (output == null) {
                 throw new ExtractorException("KbuildMiner execution not successful");
@@ -87,9 +88,13 @@ public class KbuildMinerExtractor extends AbstractBuildModelExtractor {
             Converter c = new Converter(PipelineConfigurator.instance().getVmProvider().getResult());
             result = c.convert(output);
             
-            
         } catch (IOException e) {
             throw new ExtractorException(e);
+            
+        } finally {
+            if (output != null && output.isFile()) {
+                output.delete();
+            }
         }
         
         return result;
