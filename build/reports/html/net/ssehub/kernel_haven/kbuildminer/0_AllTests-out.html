@@ -1,0 +1,58 @@
+<html xmlns:string="xalan://java.lang.String" xmlns:lxslt="http://xml.apache.org/xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Standard Output from AllTests</title>
+</head>
+<body>
+<pre>[warning] [2018-02-22 10:45:57] [main] Presence condition for file file1.c is invalid
+[warning] [2018-02-22 10:45:57] [main] Presence condition for file file2.c is invalid
+[error] [2018-02-22 10:45:57] [main] Couldn't parse expression "this is not a valid formula.":
+                                     net.ssehub.kernel_haven.util.logic.parser.ExpressionFormatException: Invalid character in expression: .
+                                         at net.ssehub.kernel_haven.util.logic.parser.Parser.lex(Parser.java:92)
+                                         at net.ssehub.kernel_haven.util.logic.parser.Parser.parse(Parser.java:39)
+                                         at net.ssehub.kernel_haven.kbuildminer.Converter.convert(Converter.java:139)
+                                         at net.ssehub.kernel_haven.kbuildminer.ConverterTest.testInvalidExpressionOutput(ConverterTest.java:86)
+                                         at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+                                         at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+                                         at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+                                         at java.lang.reflect.Method.invoke(Unknown Source)
+                                         at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+                                         at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+                                         at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+                                         at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+                                         at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+                                         at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+                                         at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+                                         at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+                                         at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+                                         at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+                                         at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+                                         at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+                                         at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+                                         at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+                                         at org.junit.runners.Suite.runChild(Suite.java:128)
+                                         at org.junit.runners.Suite.runChild(Suite.java:27)
+                                         at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+                                         at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+                                         at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+                                         at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+                                         at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+                                         at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+                                         at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:38)
+                                         at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:535)
+                                         at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:1182)
+                                         at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:1033)
+[info] [2018-02-22 10:45:57] [main] Instantiating extractor factories...
+[info] [2018-02-22 10:45:57] [main] Successfully instantiated variability extractor net.ssehub.kernel_haven.variability_model.EmptyVariabilityModelExtractor
+[info] [2018-02-22 10:45:57] [main] Successfully instantiated build extractor net.ssehub.kernel_haven.build_model.EmptyBuildModelExtractor
+[info] [2018-02-22 10:45:57] [main] Successfully instantiated code extractor net.ssehub.kernel_haven.code_model.EmptyCodeModelExtractor
+[info] [2018-02-22 10:45:57] [main] Creating providers...
+[info] [2018-02-22 10:45:57] [main] Created variability provider
+[info] [2018-02-22 10:45:57] [main] Created build provider
+[info] [2018-02-22 10:45:57] [main] Created code provider
+[info] [2018-02-22 10:45:58] [EmptyVariabilityModelExtractorThread] Starting on 1 targets in 1 threads
+[info] [2018-02-22 10:45:58] [EmptyVariabilityModelExtractorThread-1] Starting extractor for testdata\pseudo_linux
+[info] [2018-02-22 10:45:58] [EmptyVariabilityModelExtractorThread] All threads done
+</pre>
+</body>
+</html>
