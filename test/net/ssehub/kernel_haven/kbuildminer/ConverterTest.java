@@ -11,11 +11,9 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import net.ssehub.kernel_haven.build_model.BuildModel;
-import net.ssehub.kernel_haven.util.Logger;
 import net.ssehub.kernel_haven.util.logic.False;
 import net.ssehub.kernel_haven.util.logic.Formula;
 import net.ssehub.kernel_haven.util.logic.True;
@@ -30,14 +28,6 @@ import net.ssehub.kernel_haven.variability_model.VariabilityVariable;
  */
 public class ConverterTest {
     
-    /**
-     * Inits the logger.
-     */
-    @BeforeClass
-    public static void beforeClass() {
-        Logger.init();
-    }
-
     /**
      * Tests whether the converter reads the correct files and PCs.
      * 

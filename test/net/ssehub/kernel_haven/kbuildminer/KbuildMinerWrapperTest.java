@@ -18,7 +18,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import net.ssehub.kernel_haven.util.Logger;
 import net.ssehub.kernel_haven.util.Util;
 
 /**
@@ -34,14 +33,6 @@ public class KbuildMinerWrapperTest {
     private static final File RESOURCE_DIR = new File("testdata/tmp_res");
     
     private KbuildMinerWrapper wrapper;
-    
-    /**
-     * Initializes the logger.
-     */
-    @BeforeClass
-    public static void initLogger() {
-        Logger.init();
-    }
     
     /**
      * Creates the temporary resource dir.
