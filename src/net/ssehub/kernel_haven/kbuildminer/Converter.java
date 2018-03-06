@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.LineNumberReader;
 
 import net.ssehub.kernel_haven.build_model.BuildModel;
 import net.ssehub.kernel_haven.util.Logger;
@@ -121,7 +122,7 @@ public class Converter {
         VariableCache cache = new VariableCache();
         Parser<Formula> pcParser = new Parser<Formula>(new KbuildMinerPcGrammar(cache));
         
-        BufferedReader in = new BufferedReader(new FileReader(file));
+        LineNumberReader in = new LineNumberReader(new BufferedReader(new FileReader(file)));
         String line;
         while ((line = in.readLine()) != null) {
             String filename = line.substring(0, line.indexOf(':'));
@@ -132,7 +133,8 @@ public class Converter {
             String pc = line.substring(filename.length() + 2);
             
             if (pc.contains("InvalidExpression()")) {
-                LOGGER.logWarning("Presence condition for file " + filename + " is invalid");
+                LOGGER.logWarning("Presence condition for file " + filename + " in line " + in.getLineNumber()
+                    + " is invalid");
                 
             } else {
                 try {
@@ -140,7 +142,7 @@ public class Converter {
                     presenceCondition = removeNonTristateModules(presenceCondition);
                     result.add(sourceFile, presenceCondition);
                 } catch (ExpressionFormatException e) {
-                    LOGGER.logException("Couldn't parse expression \"" + pc + "\"", e);
+                    LOGGER.logException("Couldn't parse expression \"" + pc + "\" in line " + in.getLineNumber(), e);
                 }
             }
         }
