@@ -21,6 +21,7 @@ import net.ssehub.kernel_haven.util.Util;
 import net.ssehub.kernel_haven.util.logic.Disjunction;
 import net.ssehub.kernel_haven.util.logic.True;
 import net.ssehub.kernel_haven.util.logic.Variable;
+import net.ssehub.kernel_haven.util.null_checks.NonNull;
 
 /**
  * Tests the full {@link KbuildMinerExtractor} class.
@@ -29,7 +30,7 @@ import net.ssehub.kernel_haven.util.logic.Variable;
  */
 public class KbuildMinerExtractorTest {
 
-    private static final File RESOURCE_DIR = new File("testdata/tmp_res");
+    private static final @NonNull File RESOURCE_DIR = new File("testdata/tmp_res");
     
     /**
      * Creates the temporary resource dir.
@@ -60,6 +61,7 @@ public class KbuildMinerExtractorTest {
      * @throws SetUpException If creating the configuration or initializing the extractor fails.
      * @throws ExtractorException If the extractor throws an exception.
      */
+    @SuppressWarnings("null")
     private BuildModel run(File sourceTree, String ... topFolders) throws SetUpException, ExtractorException {
         StringBuilder topFoldersString = new StringBuilder();
         for (int i = 0; i < topFolders.length; i++) {
@@ -93,6 +95,7 @@ public class KbuildMinerExtractorTest {
      * @throws SetUpException unwanted.
      */
     @Test
+    @SuppressWarnings("null")
     public void testPseudoLinux() throws SetUpException, ExtractorException {
         BuildModel bm = run(new File("testdata/pseudo_linux"), "arch/x86", "drivers", "kernel");
         

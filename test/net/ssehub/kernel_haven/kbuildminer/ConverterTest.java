@@ -26,6 +26,7 @@ import net.ssehub.kernel_haven.variability_model.VariabilityVariable;
  * @author Adam
  * @author Moritz
  */
+@SuppressWarnings("null")
 public class ConverterTest {
     
     /**

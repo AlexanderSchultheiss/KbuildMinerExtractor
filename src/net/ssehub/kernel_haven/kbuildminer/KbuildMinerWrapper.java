@@ -5,6 +5,8 @@ import java.io.IOException;
 
 import net.ssehub.kernel_haven.util.Logger;
 import net.ssehub.kernel_haven.util.Util;
+import net.ssehub.kernel_haven.util.null_checks.NonNull;
+import net.ssehub.kernel_haven.util.null_checks.Nullable;
 
 /**
  * This class is a Wrapper for calling the tool KbuildMiner and receiving the
@@ -21,14 +23,14 @@ public class KbuildMinerWrapper {
     /**
      * The directory where this extractor can store its resources. Not null.
      */
-    private File resourceDir;
+    private @NonNull File resourceDir;
     
     /**
      * Initializes the KbuildMiner.
      * 
      * @param resourceDir The directory where this extractor can stores. Must its resource not be null.
      */
-    public KbuildMinerWrapper(File resourceDir) {
+    public KbuildMinerWrapper(@NonNull File resourceDir) {
         this.resourceDir = resourceDir;
     }
 
@@ -45,7 +47,7 @@ public class KbuildMinerWrapper {
      * @throws IOException
      *             If executing KbuildMiner fails.
      */
-    public File runKbuildMiner(File sourceTree, String topFolders) throws IOException {
+    public @Nullable File runKbuildMiner(@NonNull File sourceTree, @NonNull String topFolders) throws IOException {
         LOGGER.logDebug("runKBuildMiner() called");
 
         // extract jar to run kconfigreader

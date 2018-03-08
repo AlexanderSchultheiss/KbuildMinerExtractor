@@ -1,5 +1,7 @@
 package net.ssehub.kernel_haven.kbuildminer;
 
+import static net.ssehub.kernel_haven.util.null_checks.NullHelpers.notNull;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -13,6 +15,9 @@ import net.ssehub.kernel_haven.config.Setting;
 import net.ssehub.kernel_haven.util.ExtractorException;
 import net.ssehub.kernel_haven.util.Logger;
 import net.ssehub.kernel_haven.util.Util;
+import net.ssehub.kernel_haven.util.null_checks.NonNull;
+import net.ssehub.kernel_haven.util.null_checks.Nullable;
+import net.ssehub.kernel_haven.variability_model.VariabilityModel;
 
 /**
  * Wrapper to run KbuildMiner.
@@ -22,7 +27,7 @@ import net.ssehub.kernel_haven.util.Util;
  */
 public class KbuildMinerExtractor extends AbstractBuildModelExtractor {
 
-    public static final Setting<String> TOP_FOLDERS
+    public static final @NonNull Setting<@Nullable String> TOP_FOLDERS
             = new Setting<>("build.extractor.top_folders", Setting.Type.STRING, false, null, "List of top-folders to "
                     + "analyze in the product line. If this is not specfied, it is automatically generated from the "
                     + "arch setting."); 
@@ -32,24 +37,24 @@ public class KbuildMinerExtractor extends AbstractBuildModelExtractor {
     /**
      * The path to the linux source tree.
      */
-    private File sourceTree;
+    private @NonNull File sourceTree = new File("will be initialized in init()");
     
     /**
      * The top folders to analyze in the source tree.
      */
-    private String topFolders;
+    private @NonNull String topFolders = "will be initialized in init()";
     
     /**
      * The directory where this extractor can store its resources. Not null.
      */
-    private File resourceDir;
+    private @NonNull File resourceDir = new File("will be initialized in init()");
    
     @Override
-    protected void init(Configuration config) throws SetUpException {
+    protected void init(@NonNull Configuration config) throws SetUpException {
         sourceTree = config.getValue(DefaultSettings.SOURCE_TREE);
         
         config.registerSetting(TOP_FOLDERS);
-        topFolders = config.getValue(TOP_FOLDERS);
+        String topFolders = config.getValue(TOP_FOLDERS);
         if (topFolders == null) {
             String arch = config.getValue(DefaultSettings.ARCH);
             if (arch == null) {
@@ -61,12 +66,13 @@ public class KbuildMinerExtractor extends AbstractBuildModelExtractor {
             }
             
         }
+        this.topFolders = topFolders;
         
         resourceDir = Util.getExtractorResourceDir(config, getClass());
     }
 
     @Override
-    protected BuildModel runOnFile(File target) throws ExtractorException {
+    protected @NonNull BuildModel runOnFile(@NonNull File target) throws ExtractorException {
         LOGGER.logDebug("Starting extraction");
         
         BuildModel result;
@@ -85,7 +91,11 @@ public class KbuildMinerExtractor extends AbstractBuildModelExtractor {
                 LOGGER.logWarning("Output of KbuildMiner is an empty file");
             }
             
-            Converter c = new Converter(PipelineConfigurator.instance().getVmProvider().getResult());
+            VariabilityModel varModel = notNull(PipelineConfigurator.instance().getVmProvider()).getResult();
+            if (varModel == null) {
+                throw new ExtractorException("Did not get a variability model");
+            }
+            Converter c = new Converter(varModel);
             result = c.convert(output);
             
         } catch (IOException e) {
@@ -101,7 +111,7 @@ public class KbuildMinerExtractor extends AbstractBuildModelExtractor {
     }
 
     @Override
-    protected String getName() {
+    protected @NonNull String getName() {
         return "KbuildMinerExtractor";
     }
     

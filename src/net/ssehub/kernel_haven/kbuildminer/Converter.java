@@ -17,6 +17,7 @@ import net.ssehub.kernel_haven.util.logic.Variable;
 import net.ssehub.kernel_haven.util.logic.parser.ExpressionFormatException;
 import net.ssehub.kernel_haven.util.logic.parser.Parser;
 import net.ssehub.kernel_haven.util.logic.parser.VariableCache;
+import net.ssehub.kernel_haven.util.null_checks.NonNull;
 import net.ssehub.kernel_haven.variability_model.VariabilityModel;
 import net.ssehub.kernel_haven.variability_model.VariabilityVariable;
 
@@ -31,14 +32,14 @@ public class Converter {
     
     private static final Logger LOGGER = Logger.get();
     
-    private VariabilityModel varModel;
+    private @NonNull VariabilityModel varModel;
 
     /**
      * Creates a new converter with the given variability model.
      * 
      * @param varModel The variability model. This is needed to check which variables are tristate.
      */
-    public Converter(VariabilityModel varModel) {
+    public Converter(@NonNull VariabilityModel varModel) {
         this.varModel = varModel;
     }
     
@@ -50,7 +51,7 @@ public class Converter {
      * @param formula The formula to remove the _MODULEs from.
      * @return The formula with without the _MODULEs.
      */
-    private Formula removeNonTristateModules(Formula formula) {
+    private @NonNull Formula removeNonTristateModules(@NonNull Formula formula) {
         
         Formula result = formula;
         
@@ -95,7 +96,7 @@ public class Converter {
      * @param formula The formula to remove the parts from.
      * @return The formula that is without the {@link False} in disjunctions.
      */
-    private Formula simplifyDisjunctionsWithFalse(Disjunction formula) {
+    private @NonNull Formula simplifyDisjunctionsWithFalse(@NonNull Disjunction formula) {
         Formula result = formula;
         
         if (formula.getLeft() instanceof False) {
@@ -114,13 +115,13 @@ public class Converter {
      * @param file The file that contains the output of KbuildMiner.
      * @return The {@link BuildModel}.
      * 
-     * @throws IOException If reading the file fails. Never <code>null</code>.
+     * @throws IOException If reading the file fails.
      */
-    public BuildModel convert(File file) throws IOException {
+    public @NonNull BuildModel convert(@NonNull File file) throws IOException {
         BuildModel result = new BuildModel();
         
         VariableCache cache = new VariableCache();
-        Parser<Formula> pcParser = new Parser<Formula>(new KbuildMinerPcGrammar(cache));
+        Parser<@NonNull Formula> pcParser = new Parser<>(new KbuildMinerPcGrammar(cache));
         
         LineNumberReader in = new LineNumberReader(new BufferedReader(new FileReader(file)));
         String line;

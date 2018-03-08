@@ -19,6 +19,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import net.ssehub.kernel_haven.util.Util;
+import net.ssehub.kernel_haven.util.null_checks.NonNull;
 
 /**
  * Tests if the KbuildMinerWrapper runs correctly.
@@ -30,7 +31,7 @@ import net.ssehub.kernel_haven.util.Util;
  */
 public class KbuildMinerWrapperTest {
 
-    private static final File RESOURCE_DIR = new File("testdata/tmp_res");
+    private static final @NonNull File RESOURCE_DIR = new File("testdata/tmp_res");
     
     private KbuildMinerWrapper wrapper;
     
@@ -66,6 +67,7 @@ public class KbuildMinerWrapperTest {
      * @throws IOException unwanted.
      */
     @Test
+    @SuppressWarnings("null")
     public void testRunKbuildMiner() throws IOException {
         File result = wrapper.runKbuildMiner(new File("testdata/pseudo_linux"), "arch/x86,drivers,kernel");
 
