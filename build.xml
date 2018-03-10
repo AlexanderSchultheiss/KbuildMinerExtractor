@@ -2,7 +2,7 @@
 
 <!-- author: moritz, kevin, Sascha El-Sharkawy -->
 <project name="KbuildminerExtractor" default="jenkins" basedir=".">
-	<description>Builds, tests, and runs the project KbuildminerExtractor.</description>
+	<description>A build-model extractor based on the Kbuildminer tool</description>
 
 	<!-- Load Marcros on Jenkins -->
 	<include file="../../KernelHaven_Infrastructure/workspace/KernelHavenMacros.xml" as="KH_Common" optional="true" />
@@ -24,4 +24,5 @@
 		<antcall target="KH_Common.prepare.folders" />
 		<get src="${infrastructure.location}" dest="${dependencies.dir}/kernelhaven.jar" />
 	</target>
+
 </project>
