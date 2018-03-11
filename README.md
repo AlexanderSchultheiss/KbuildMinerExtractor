@@ -1,6 +1,6 @@
 # KbuildMinerExtractor
 
-![Build Status](http://jenkins.sse.uni-hildesheim.de/buildStatus/icon?job=KernelHaven_KbuildMinerExtractor)
+![Build Status](https://jenkins.sse.uni-hildesheim.de/buildStatus/icon?job=KernelHaven_KbuildMinerExtractor)
 
 A build-model extractor for [KernelHaven](https://github.com/KernelHaven/KernelHaven).
 
@@ -22,6 +22,7 @@ This plugin has no additional dependencies other than KernelHaven.
 
 ## License
 
-This plugin is licensed under GPLv3. Another license would be possible with following restrictions:
+This plugin is licensed under [GPLv3](https://www.gnu.org/licenses/gpl-3.0.html).
 
-The plugin contains `kbuildminer.jar` which is under GPL-3.0. We do not link against kbuildminer, so technically we are not infected by GPL. However a release under a license other than GPL-3.0 would require the removal of the contained KbuildMiner.
+Another license would be possible with the following restriction:
+* The plugin contains `kbuildminer.jar` which is under GPLv3. We do not link against kbuildminer, so technically we are not infected by GPL. However a release under a license other than GPLv3 would require the removal of the contained KbuildMiner.
