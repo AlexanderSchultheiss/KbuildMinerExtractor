@@ -1,5 +1,6 @@
 package net.ssehub.kernel_haven.kbuildminer;
 
+import static net.ssehub.kernel_haven.util.logic.FormulaBuilder.or;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -18,9 +19,7 @@ import net.ssehub.kernel_haven.config.DefaultSettings;
 import net.ssehub.kernel_haven.test_utils.TestConfiguration;
 import net.ssehub.kernel_haven.util.ExtractorException;
 import net.ssehub.kernel_haven.util.Util;
-import net.ssehub.kernel_haven.util.logic.Disjunction;
 import net.ssehub.kernel_haven.util.logic.True;
-import net.ssehub.kernel_haven.util.logic.Variable;
 import net.ssehub.kernel_haven.util.null_checks.NonNull;
 
 /**
@@ -101,8 +100,7 @@ public class KbuildMinerExtractorTest {
         
         assertThat(bm.getSize(), is(3));
         assertThat(bm.getPc(new File("arch/x86/kernel.c")), is(True.INSTANCE));
-        assertThat(bm.getPc(new File("drivers/driver.c")),
-                is(new Disjunction(new Variable("CONFIG_A"), new Variable("CONFIG_A_MODULE"))));
+        assertThat(bm.getPc(new File("drivers/driver.c")), is(or("CONFIG_A", "CONFIG_A_MODULE")));
         assertThat(bm.getPc(new File("kernel/core/core.c")), is(True.INSTANCE));
     }
     
