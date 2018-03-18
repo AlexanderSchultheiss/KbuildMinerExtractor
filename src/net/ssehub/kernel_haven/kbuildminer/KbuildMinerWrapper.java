@@ -53,15 +53,23 @@ public class KbuildMinerWrapper {
         // extract jar to run kconfigreader
         File kbuildMinerJar = new File(resourceDir, "kbuildminer.jar");
         if (!kbuildMinerJar.isFile()) {
-            Util.extractJarResourceToFile("net/ssehub/kernel_haven/kbuildminer/res/kbuildminer.jar",
-                    kbuildMinerJar);
+            Util.extractJarResourceToFile("net/ssehub/kernel_haven/kbuildminer/res/kbuildminer.jar", kbuildMinerJar);
+        }
+        
+        // logback.xml is the configuration file for the logger of kbuildminer
+        // it is necessary to not spam us with debug messages
+        File logback = new File(resourceDir, "logback.xml");
+        if (!logback.isFile()) {
+            Util.extractJarResourceToFile("net/ssehub/kernel_haven/kbuildminer/res/logback.xml", logback);
         }
 
         File output = File.createTempFile("kbuildminer.pcs.txt", "");
         output.delete();
 
-        ProcessBuilder processBuilder = new ProcessBuilder("java", "-Xmx2G", "-Xms128m", "-Xss50m", "-cp",
-                kbuildMinerJar.getAbsolutePath(), "gsd.buildanalysis.linux.KBuildMinerMain",
+        ProcessBuilder processBuilder = new ProcessBuilder("java", "-Xmx2G", "-Xms128m", "-Xss50m",
+                // also add resource dir to the class path, because logback.xml will be located there
+                "-cp", resourceDir.getAbsolutePath() + File.pathSeparatorChar + kbuildMinerJar.getAbsolutePath(),
+                "gsd.buildanalysis.linux.KBuildMinerMain",
                 "--codebase", sourceTree.getAbsolutePath(),
                 "--topFolders", topFolders,
                 "--pcOutput", output.getAbsolutePath());
