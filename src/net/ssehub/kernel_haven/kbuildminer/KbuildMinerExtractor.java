@@ -103,7 +103,9 @@ public class KbuildMinerExtractor extends AbstractBuildModelExtractor {
             
         } finally {
             if (output != null && output.isFile()) {
-                output.delete();
+                if (!output.delete()) {
+                    LOGGER.logWarning("Can't delete kbuildminer output file " + output.getAbsolutePath());
+                }
             }
         }
         
