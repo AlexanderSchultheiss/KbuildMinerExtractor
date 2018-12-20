@@ -78,7 +78,11 @@ public class KbuildMinerWrapper {
 
         boolean success = Util.executeProcess(processBuilder, "KbuildMiner");
         
-        Util.deleteFolder(new File(resourceDir, "output"));
+        // delete output/ directory that is (annoyingly) always created by KbuildMiner in the working dir (resDir)
+        File outputDir = new File(resourceDir, "output");
+        if (outputDir.isDirectory()) {
+            Util.deleteFolder(outputDir);
+        }
 
         if (!success && output.isFile()) {
             if (!output.delete()) {
