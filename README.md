@@ -1,6 +1,6 @@
 # KbuildMinerExtractor
 
-![Build Status](https://jenkins.sse.uni-hildesheim.de/buildStatus/icon?job=KernelHaven_KbuildMinerExtractor)
+![Build Status](https://jenkins-2.sse.uni-hildesheim.de/buildStatus/icon?job=KH_KbuildMinerExtractor)
 
 A build-model extractor for [KernelHaven](https://github.com/KernelHaven/KernelHaven).
 
@@ -12,7 +12,7 @@ This extractor finds conditional compilation settings in the Kbuild files (`Kbui
 
 ## Usage
 
-Place [`KbuildminerExtractor.jar`](https://jenkins.sse.uni-hildesheim.de/view/KernelHaven/job/KernelHaven_KbuildMinerExtractor/lastSuccessfulBuild/artifact/build/jar/KbuildminerExtractor.jar) in the plugins folder of KernelHaven.
+Place [`KbuildminerExtractor.jar`](https://jenkins-2.sse.uni-hildesheim.de/view/KernelHaven/job/KH_KbuildMinerExtractor/lastSuccessfulBuild/artifact/build/jar/KbuildminerExtractor.jar) in the plugins folder of KernelHaven.
 
 To use this extractor, set `build.extractor.class` to `net.ssehub.kernel_haven.kbuildminer.KbuildMinerExtractor` in the KernelHaven properties.
 
