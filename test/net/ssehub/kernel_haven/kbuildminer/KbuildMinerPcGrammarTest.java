@@ -135,8 +135,6 @@ public class KbuildMinerPcGrammarTest {
     
     /**
      * Tests parsing of malformed constants.
-     * 
-     * @throws ExpressionFormatException unwanted.
      */
     @Test
     public void testMalformedConstant() {

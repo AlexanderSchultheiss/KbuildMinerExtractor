@@ -19,8 +19,10 @@ package net.ssehub.kernel_haven.kbuildminer;
 import net.ssehub.kernel_haven.util.logic.Formula;
 import net.ssehub.kernel_haven.util.logic.Negation;
 import net.ssehub.kernel_haven.util.logic.True;
+import net.ssehub.kernel_haven.util.logic.Variable;
 import net.ssehub.kernel_haven.util.logic.parser.CStyleBooleanGrammar;
 import net.ssehub.kernel_haven.util.logic.parser.ExpressionFormatException;
+import net.ssehub.kernel_haven.util.logic.parser.Grammar;
 import net.ssehub.kernel_haven.util.logic.parser.Operator;
 import net.ssehub.kernel_haven.util.logic.parser.VariableCache;
 import net.ssehub.kernel_haven.util.null_checks.NonNull;
@@ -33,13 +35,12 @@ import net.ssehub.kernel_haven.util.null_checks.Nullable;
  * <p>
  * Examples:
  * <ul>
- *      <li><code>((CRYPTO_AES_586 == "y") || (CRYPTO_AES_586 == "m"))</code></li>
- *      <li><code>((64BIT == "y") && ((CRYPTO_AES_NI_INTEL == "y") || (CRYPTO_AES_NI_INTEL == "m")))</code></li>
- *      <li><code>((X86_CMPXCHG64 != "y") && (X86_32 == "y"))</code></li>
- *      <li><code>!(X86_32 == "y")</code></li>
- *      <li><code>[TRUE]</code></li>
+ *      <li>{@code ((CRYPTO_AES_586 == "y") || (CRYPTO_AES_586 == "m"))}</li>
+ *      <li>{@code ((64BIT == "y") && ((CRYPTO_AES_NI_INTEL == "y") || (CRYPTO_AES_NI_INTEL == "m")))}</li>
+ *      <li>{@code ((X86_CMPXCHG64 != "y") && (X86_32 == "y"))}</li>
+ *      <li>{@code !(X86_32 == "y")}</li>
+ *      <li>{@code [TRUE]}</li>
  * </ul>
- * </p>
  * 
  * @author Adam (from KernelMiner project)
  */
