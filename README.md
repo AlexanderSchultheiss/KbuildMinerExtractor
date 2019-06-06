@@ -12,7 +12,7 @@ This extractor finds conditional compilation settings in the Kbuild files (`Kbui
 
 ## Usage
 
-Place [`KbuildminerExtractor.jar`](https://jenkins-2.sse.uni-hildesheim.de/job/KH_KbuildMinerExtractor/lastSuccessfulBuild/artifact/build/jar/KbuildminerExtractor.jar) in the plugins folder of KernelHaven.
+Place [`KbuildMinerExtractor.jar`](https://jenkins-2.sse.uni-hildesheim.de/job/KH_KbuildMinerExtractor/lastSuccessfulBuild/artifact/build/jar/KbuildMinerExtractor.jar) in the plugins folder of KernelHaven.
 
 To use this extractor, set `build.extractor.class` to `net.ssehub.kernel_haven.kbuildminer.KbuildMinerExtractor` in the KernelHaven properties.
 
