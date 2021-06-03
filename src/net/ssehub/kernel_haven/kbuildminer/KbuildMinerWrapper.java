@@ -16,6 +16,7 @@
  */
 package net.ssehub.kernel_haven.kbuildminer;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 
@@ -89,11 +90,16 @@ public class KbuildMinerWrapper {
                 "--codebase", sourceTree.getAbsolutePath(),
                 "--topFolders", topFolders,
                 "--pcOutput", output.getAbsolutePath());
+
+        ByteArrayOutputStream stdout = new ByteArrayOutputStream();
+        ByteArrayOutputStream stderr = new ByteArrayOutputStream();
         
         processBuilder.directory(resourceDir);
 
-        boolean success = Util.executeProcess(processBuilder, "KbuildMiner");
-        
+        boolean success = Util.executeProcess(processBuilder, "KbuildMiner", stdout, stderr, 0);
+
+        logOutput(stdout, stderr);
+
         // delete output/ directory that is (annoyingly) always created by KbuildMiner in the working dir (resDir)
         File outputDir = new File(resourceDir, "output");
         if (outputDir.isDirectory()) {
@@ -107,6 +113,19 @@ public class KbuildMinerWrapper {
         }
         
         return success ? output : null;
+    }
+
+    private void logOutput(ByteArrayOutputStream stdout, ByteArrayOutputStream stderr) {
+        String infoString;
+        String errorString;
+        infoString = stdout.toString();
+        errorString = stderr.toString();
+        if (infoString.length() > 0) {
+            LOGGER.logInfo(stdout.toString());
+        }
+        if (errorString.length() > 0) {
+            LOGGER.logError(stderr.toString());
+        }
     }
 
 }

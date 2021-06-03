@@ -20,6 +20,14 @@ import static net.ssehub.kernel_haven.util.null_checks.NullHelpers.notNull;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.FileVisitOption;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import net.ssehub.kernel_haven.PipelineConfigurator;
 import net.ssehub.kernel_haven.SetUpException;
@@ -74,14 +82,18 @@ public class KbuildMinerExtractor extends AbstractBuildModelExtractor {
         if (topFolders == null) {
             String arch = config.getValue(DefaultSettings.ARCH);
             if (arch == null) {
-                throw new SetUpException("Config does not contain top_folders setting");
+                throw new SetUpException("Config does not contain 'arch' setting");
             } else {
                 // if no top_folders are specified, then we can use default values for Linux, based on arch 
-                topFolders = "arch/" + arch + ",block,crypto,drivers,firmware,fs,init,"
-                        + "ipc,kernel,lib,mm,net,security,sound";
+                try {
+                    topFolders = "arch/" + arch + determineTopFolders();
+                } catch (IOException e) {
+                    throw new SetUpException(e);
+                }
             }
             
         }
+        LOGGER.logInfo("Top folders: " + topFolders);
         this.topFolders = topFolders;
         
         resourceDir = Util.getExtractorResourceDir(config, getClass());
@@ -132,5 +144,34 @@ public class KbuildMinerExtractor extends AbstractBuildModelExtractor {
     protected @NonNull String getName() {
         return "KbuildMinerExtractor";
     }
-    
+
+    private String determineTopFolders() throws IOException {
+        LOGGER.logInfo("Determining top folders in " + sourceTree);
+        try {
+            final List<Path> makefiles = Files.find(sourceTree.toPath(),
+                    Integer.MAX_VALUE,
+                    (path, basicFileAttributes) -> path.toFile().isFile() && isMakefileName(path.toFile().getName()),
+                    FileVisitOption.FOLLOW_LINKS).collect(Collectors.toList());
+            StringBuilder topFolders = new StringBuilder();
+            Set<String> folderNames = new HashSet<>();
+            for (Path path : makefiles) {
+                Path relativePath = sourceTree.toPath().relativize(path).getParent();
+                if (relativePath != null) {
+                    String topFolder = relativePath.toString();
+                    if (!topFolder.equals("arch") && !topFolder.equals("Makefile")) {
+                        folderNames.add(topFolder);
+                    }
+                }
+            }
+            folderNames.forEach(name -> topFolders.append(",").append(name));
+            return topFolders.toString();
+        } catch (IOException e) {
+            LOGGER.logException("Was not able to retrieve top folders ", e);
+            throw e;
+        }
+    }
+
+    private boolean isMakefileName(String fileName) {
+        return fileName.equals("Makefile") || fileName.equals("Kbuild") || fileName.equals("Kbuild.src");
+    }
 }
