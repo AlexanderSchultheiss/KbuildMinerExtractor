@@ -160,7 +160,7 @@ public class KbuildMinerExtractor extends AbstractBuildModelExtractor {
             for (Path path : makefiles) {
                 Path relativePath = sourceTree.toPath().relativize(path).getParent();
                 if (relativePath != null) {
-                    String topFolder = relativePath.toString();
+                    String topFolder = relativePath.subpath(0,1).toString();
                     if (!topFolder.equals("arch") && !topFolder.equals("Makefile")) {
                         folderNames.add(topFolder);
                     }
