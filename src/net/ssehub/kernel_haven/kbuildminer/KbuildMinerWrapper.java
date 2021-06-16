@@ -13,6 +13,9 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * NOTE: The original version of this file was changed by Alexander Schultheiß,
+ * Humboldt-Universität zu Berlin, alexander.schultheiss@informatik.hu-berlin.de
  */
 package net.ssehub.kernel_haven.kbuildminer;
 
