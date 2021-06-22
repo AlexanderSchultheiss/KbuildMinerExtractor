@@ -161,7 +161,8 @@ public class KbuildMinerExtractor extends AbstractBuildModelExtractor {
                 Path relativePath = sourceTree.toPath().relativize(path).getParent();
                 if (relativePath != null) {
                     String topFolder = relativePath.subpath(0,1).toString();
-                    if (!topFolder.equals("arch") && !topFolder.equals("Makefile")) {
+                    /* The 'samples' folder was causing problems for the analysis of Linux with easy way to fix it */
+                    if (!topFolder.equals("arch") && !topFolder.equals("Makefile") && !topFolder.equals("samples")) {
                         folderNames.add(topFolder);
                     }
                 }
