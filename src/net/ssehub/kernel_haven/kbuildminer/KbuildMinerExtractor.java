@@ -176,6 +176,6 @@ public class KbuildMinerExtractor extends AbstractBuildModelExtractor {
     }
 
     private boolean isMakefileName(String fileName) {
-        return fileName.equals("Makefile") || fileName.equals("Kbuild") || fileName.equals("Kbuild.src");
+        return fileName.equals("Makefile"); // || fileName.equals("Kbuild") || fileName.equals("Kbuild.src");
     }
 }
