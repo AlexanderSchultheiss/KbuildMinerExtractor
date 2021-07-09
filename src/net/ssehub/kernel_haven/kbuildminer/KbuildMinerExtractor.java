@@ -22,10 +22,12 @@ package net.ssehub.kernel_haven.kbuildminer;
 import static net.ssehub.kernel_haven.util.null_checks.NullHelpers.notNull;
 
 import java.io.File;
+import java.io.FileFilter;
 import java.io.IOException;
 import java.nio.file.FileVisitOption;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -119,7 +121,7 @@ public class KbuildMinerExtractor extends AbstractBuildModelExtractor {
             }
             
             if (output.length() == 0) {
-                LOGGER.logWarning("Output of KbuildMiner is an empty file");
+                throw new ExtractorException("Output of KbuildMiner is an empty file");
             }
             
             VariabilityModel varModel = notNull(PipelineConfigurator.instance().getVmProvider()).getResult();
@@ -176,6 +178,7 @@ public class KbuildMinerExtractor extends AbstractBuildModelExtractor {
     }
 
     private boolean isMakefileName(String fileName) {
-        return fileName.equals("Makefile"); // || fileName.equals("Kbuild") || fileName.equals("Kbuild.src");
+        // TODO: I had removed the last two conditions for some reason, but I cannot remember why. Removing them caused problems for Busybox, so I put them back in
+        return fileName.equals("Makefile") || fileName.equals("Kbuild") || fileName.equals("Kbuild.src");
     }
 }
